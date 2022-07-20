@@ -33,7 +33,7 @@ final class TcpConnector implements ConnectorInterface
             ));
         }
 
-        $ip = \trim($parts['host'], '[]');
+        $ip = \gethostbyname(\trim($parts['host'], '[]'));
         if (@\inet_pton($ip) === false) {
             return Promise\reject(new \InvalidArgumentException(
                 'Given URI "' . $uri . '" does not contain a valid host IP (EINVAL)',
